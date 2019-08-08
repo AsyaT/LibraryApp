@@ -15,7 +15,7 @@ namespace LibraryApp.Models
         public IEnumerable<AuthorModel> Authors { get; set; }
 
         [Required]
-        [Range(0, 10000)]
+        [Range(1, 10000)]
         public uint NumberOfPages { get; set; }
 
         [StringLength(30, ErrorMessage = "Publisher name cannot be longer than 20 characters.")]

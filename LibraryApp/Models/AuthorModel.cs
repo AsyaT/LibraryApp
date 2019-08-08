@@ -9,7 +9,7 @@ namespace LibraryApp.Models
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(20, ErrorMessage = "Last name cannot be longer than 20 characters."))]
+        [StringLength(20, ErrorMessage = "Last name cannot be longer than 20 characters.")]
         public string LastName { get; set; }
     }
 }
