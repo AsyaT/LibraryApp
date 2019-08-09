@@ -81,6 +81,11 @@ namespace LibraryApp.Controllers
 
         }
 
+        public ActionResult AddAuthor (int number)
+        {
+            return PartialView(number);
+        }
+
         [HttpGet]
         public ActionResult Delete(int id)
         {
