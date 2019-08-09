@@ -33,7 +33,7 @@
             <td>@book.Publisher</td>
             <td>@book.YearOfPublication.Year</td>
             <td>@book.Image</td>
-            <td>@Html.ActionLink("Delete", "Delete", new { id = book.Id })</td>
+            <td>@Ajax.ActionLink("Delete", "Delete","Home", new { id = book.Id }, new AjaxOptions {HttpMethod= "GET",InsertionMode=InsertionMode.Replace,UpdateTargetId= "books-table" })</td>
         </tr>
     }
 </table>

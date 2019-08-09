@@ -90,7 +90,7 @@ namespace LibraryApp.Controllers
         public ActionResult Delete(int id)
         {
             Books.Remove(Books.Find(x => x.Id == id));
-            return View("Index",Books);
+            return PartialView("BooksTable",Books);
         }
 
    }
