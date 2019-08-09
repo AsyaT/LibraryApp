@@ -1,0 +1,24 @@
+﻿@using LibraryApp.Models;
+@model BookModel
+
+<tr id="book-@Model.Id">
+    <td>@Model.Title</td>
+    <td>
+        @if (Model.Authors != null)
+        {
+            foreach (AuthorModel author in Model.Authors)
+            {
+                <p>@author.FirstName @author.LastName</p>
+            }
+        }
+    </td>
+    <td>@Model.NumberOfPages</td>
+    <td>@Model.Publisher</td>
+    <td>@Model.YearOfPublication.Year</td>
+    <td>@Model.Image</td>
+    <td>
+        @Ajax.ActionLink("Edit", "Edit", "Home", new { id = Model.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "book-" + Model.Id })
+        @Ajax.ActionLink("Delete", "Delete", "Home", new { id = Model.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "books-table" })
+    </td>
+</tr>
+

@@ -18,22 +18,6 @@
     </thead>
     @foreach (BookModel book in Model)
     {
-        <tr>
-            <td>@book.Title</td>
-            <td>
-                @if (book.Authors != null)
-                {
-                    foreach (AuthorModel author in book.Authors)
-                    {
-                        <p>@author.FirstName @author.LastName</p>
-                    }
-                }
-            </td>
-            <td>@book.NumberOfPages</td>
-            <td>@book.Publisher</td>
-            <td>@book.YearOfPublication.Year</td>
-            <td>@book.Image</td>
-            <td>@Ajax.ActionLink("Delete", "Delete","Home", new { id = book.Id }, new AjaxOptions {HttpMethod= "GET",InsertionMode=InsertionMode.Replace,UpdateTargetId= "books-table" })</td>
-        </tr>
+        @Html.Partial("TableRow", book)
     }
 </table>

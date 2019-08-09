@@ -248,6 +248,8 @@
     <Content Include="Views\Home\Add.cshtml" />
     <Content Include="Views\Home\BooksTable.cshtml" />
     <Content Include="Views\Home\AddAuthor.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\TableRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

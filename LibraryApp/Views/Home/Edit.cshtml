@@ -1,0 +1,60 @@
+﻿@using LibraryApp.Models;
+@model BookModel
+
+@{
+    Layout = null;
+}
+@{HtmlHelper.UnobtrusiveJavaScriptEnabled = true;}
+<td>
+    <div>
+        @using (Ajax.BeginForm("Edit", "Home", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "book-" + Model.Id }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <div class="editor-field">
+                    @Html.LabelFor(model => model.Title)
+                    @Html.EditorFor(model => model.Title)
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+                <div class="editor-field">
+                    @Html.LabelFor(model => model.Authors)
+
+                    <br />
+
+                    @Html.Action("AddAuthor", "Home", new { number = 0 })
+
+
+                </div>
+                <div class="editor-field">
+                    @Html.LabelFor(model => model.NumberOfPages)
+                    @Html.EditorFor(model => model.NumberOfPages)
+                    @Html.ValidationMessageFor(model => model.NumberOfPages, "", new { @class = "text-danger" })
+                </div>
+                <div class="editor-field">
+                    @Html.LabelFor(model => model.Publisher)
+                    @Html.EditorFor(model => model.Publisher)
+                    @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
+                </div>
+                <div class="editor-field">
+                    @Html.LabelFor(model => model.YearOfPublication)
+                    @Html.EditorFor(model => model.YearOfPublication)
+                    @Html.ValidationMessageFor(model => model.YearOfPublication, "", new { @class = "text-danger" })
+                </div>
+                <div class="editor-field">
+                    @Html.LabelFor(model => model.Image)
+                    @Html.EditorFor(model => model.Image)
+                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                </div>
+            </fieldset>
+            <input type="submit" value="Update" />
+        }
+    </div>
+</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>

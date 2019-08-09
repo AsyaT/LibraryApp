@@ -75,7 +75,7 @@ namespace LibraryApp.Controllers
             if (ModelState.IsValid)
             {
                 Books.Add(model);
-                return PartialView("Add", new BookModel() { Title=""}); // TODO: modef come not empty, but full of old data
+                return PartialView("Add", new BookModel() { Title=""});
             }
             return PartialView("Add",model);
 
@@ -84,6 +84,30 @@ namespace LibraryApp.Controllers
         public ActionResult AddAuthor (int number)
         {
             return PartialView(number);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            BookModel itemToEdit = Books.Find(x => x.Id == id);
+            return PartialView("Edit", itemToEdit);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(BookModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                BookModel itemToEdit = Books.Find(x => x.Id == model.Id);
+                Books.Remove(itemToEdit);
+                Books.Add(model);
+                return PartialView("TableRow", model);
+            }
+            else
+            {
+                return PartialView("Edit", model);
+            }
         }
 
         [HttpGet]
