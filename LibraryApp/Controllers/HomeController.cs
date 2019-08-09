@@ -56,6 +56,28 @@ namespace LibraryApp.Controllers
         }
 
         [HttpGet]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(BookModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Books.Add(model);
+
+                return Json(new { success = true, message = "Submitted Successfully" });
+            }
+            else
+            {
+                return Json(new { success = false });
+            }
+
+        }
+
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             Books.Remove(Books.Find(x => x.Id == id));

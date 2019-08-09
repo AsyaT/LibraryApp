@@ -24,6 +24,7 @@ namespace LibraryApp.Models
         public string Publisher { get; set; }
 
         [DataType(DataType.Date)]
+        [Required]
         [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
         [YearMinimumRange(1800)]
         public DateTime YearOfPublication { get; set; }

@@ -1,0 +1,50 @@
+﻿@using LibraryApp.Models;
+@model BookModel
+
+@{ 
+    Layout = null;
+}
+
+<div id="addForm">
+@using (Html.BeginForm("Add", "Home", FormMethod.Post, new
+{
+    enctype = "multipart/form-data",
+    onSubmit = "return jQueryAjaxPost(this);"//,
+    //data_restUrl = Url.Action("Add", "Home", new { id = 0 })
+}))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Add new book</legend>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.Title)
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.NumberOfPages)
+            @Html.EditorFor(model => model.NumberOfPages)
+            @Html.ValidationMessageFor(model => model.NumberOfPages)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.Publisher)
+            @Html.EditorFor(model => model.Publisher)
+            @Html.ValidationMessageFor(model => model.Publisher)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.YearOfPublication)
+            @Html.EditorFor(model => model.YearOfPublication)
+            @Html.ValidationMessageFor(model => model.YearOfPublication)
+        </div>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.Image)
+            @Html.EditorFor(model => model.Image)
+            @Html.ValidationMessageFor(model => model.Image)
+        </div>
+        <input type="submit" value="Save" id="buttonSave" />
+    </fieldset>
+}
+</div>
