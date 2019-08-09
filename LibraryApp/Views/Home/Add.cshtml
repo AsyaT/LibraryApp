@@ -24,19 +24,8 @@
 
             <br />
 
-            @{ int authorsQuantity = 0;}
-
-            <br />
-            <div class="form-group">
-                <label>First name</label>
-                @Html.Editor("Authors[" + authorsQuantity + "].FirstName")
-                <label>Last name</label>
-                @Html.Editor("Authors[" + authorsQuantity + "].LastName")
-
-                <div id="authors-set">
-                    @Ajax.ActionLink("Add extra author", "AddAuthor", new { number = authorsQuantity + 1 }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set" })
-                </div>
-            </div>
+            
+            @Html.Action("AddAuthor","Home", new { number = 0 })
 
 
         </div>
