@@ -10,7 +10,7 @@ namespace LibraryApp.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(30, ErrorMessage = "Title cannot be longer than 20 characters.")]
+        [StringLength(30, ErrorMessage = "Title cannot be longer than 30 characters.")]
         public string Title { get; set; }
 
         //TODO: custom attribure that at least one author exists
