@@ -6,7 +6,7 @@
 }
 @{HtmlHelper.UnobtrusiveJavaScriptEnabled = true;}
 <div id="addForm">
-@using (Ajax.BeginForm("Add", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "addForm", InsertionMode = InsertionMode.Replace , OnComplete="replaceTable()"}))
+@using (Ajax.BeginForm("Add", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "addForm", InsertionMode = InsertionMode.Replace, OnComplete = "replaceTable()" }))
 {
 
     @Html.AntiForgeryToken()
@@ -17,29 +17,32 @@
         <div class="editor-field">
             @Html.LabelFor(model => model.Title)
             @Html.EditorFor(model => model.Title)
-            @Html.ValidationMessageFor(model => model.Title,"", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
         </div>
         <div class="editor-field">
-            @Html.LabelFor(model => model.NumberOfPages)
-            @Html.EditorFor(model => model.NumberOfPages)
-            @Html.ValidationMessageFor(model => model.NumberOfPages, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Authors)
         </div>
-        <div class="editor-field">
-            @Html.LabelFor(model => model.Publisher)
-            @Html.EditorFor(model => model.Publisher)
-            @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
-        </div>
-        <div class="editor-field">
-            @Html.LabelFor(model => model.YearOfPublication)
-            @Html.EditorFor(model => model.YearOfPublication)
-            @Html.ValidationMessageFor(model => model.YearOfPublication, "", new { @class = "text-danger" })
-        </div>
-        <div class="editor-field">
-            @Html.LabelFor(model => model.Image)
-            @Html.EditorFor(model => model.Image)
-            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-        </div>
-        <input type="submit" value="Save" id="buttonSave" />
-    </fieldset>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.NumberOfPages)
+                @Html.EditorFor(model => model.NumberOfPages)
+                @Html.ValidationMessageFor(model => model.NumberOfPages, "", new { @class = "text-danger" })
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.Publisher)
+                @Html.EditorFor(model => model.Publisher)
+                @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.YearOfPublication)
+                @Html.EditorFor(model => model.YearOfPublication)
+                @Html.ValidationMessageFor(model => model.YearOfPublication, "", new { @class = "text-danger" })
+            </div>
+            <div class="editor-field">
+                @Html.LabelFor(model => model.Image)
+                @Html.EditorFor(model => model.Image)
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+            </div>
+            <input type="submit" value="Save" id="buttonSave" />
+</fieldset>
 }
 </div>
