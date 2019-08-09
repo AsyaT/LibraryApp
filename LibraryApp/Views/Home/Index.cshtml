@@ -2,44 +2,15 @@
     ViewBag.Title = "Library page";
 
 }
-@using LibraryApp.Models;
-@model List<BookModel>
+
 
 <div class="row">
 
     @Html.Action("Add")
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Authors</th>
-                <th>Number of pages</th>
-                <th>Name of publisher</th>
-                <th>Year of publications</th>
-                <th>Image</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        @foreach (BookModel book in Model)
-        {
-        <tr>
-            <td>@book.Title</td>
-            <td>
-                @if (book.Authors != null)
-                {
-                    foreach (AuthorModel author in book.Authors)
-                    {
-                        <p>@author.FirstName @author.LastName</p>
-                    }
-                }
-            </td>
-            <td>@book.NumberOfPages</td>
-            <td>@book.Publisher</td>
-            <td>@book.YearOfPublication.Year</td>
-            <td>@book.Image</td>
-            <td>@Html.ActionLink("Delete","Delete", new { id = book.Id })</td>
-        </tr>
-        }
-    </table>
+    <div id="books-table">
+        @Html.Action("BooksTable")
+    </div>
+    
+    
 </div>

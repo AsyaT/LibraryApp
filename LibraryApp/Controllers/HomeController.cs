@@ -19,30 +19,38 @@ namespace LibraryApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult BooksTable()
+        {
             List<AuthorModel> tolstoy = new List<AuthorModel>();
             tolstoy.Add(new AuthorModel() { FirstName = "Лев", LastName = "Толстой" });
 
 
-            BookModel warAndPeace = new BookModel() {
+            BookModel warAndPeace = new BookModel()
+            {
                 Id = 1,
-            Title="Война и мир",
-            Authors = tolstoy,
-            YearOfPublication=new DateTime(2014,1,1),
-            Publisher= "Азбука , Азбука-Аттикус",
-            NumberOfPages = 660
+                Title = "Война и мир",
+                Authors = tolstoy,
+                YearOfPublication = new DateTime(2014, 1, 1),
+                Publisher = "Азбука , Азбука-Аттикус",
+                NumberOfPages = 660
             };
 
             List<AuthorModel> strugatskie = new List<AuthorModel>();
             strugatskie.Add(new AuthorModel() { FirstName = "Аркадий", LastName = "Стругацкий" });
             strugatskie.Add(new AuthorModel() { FirstName = "Борис", LastName = "Стругацкий" });
 
-            BookModel piknik = new BookModel() {
+            BookModel piknik = new BookModel()
+            {
                 Id = 2,
-            Title = "Пикник на обочине",
-            Authors = strugatskie,
-            YearOfPublication= new DateTime(2017,1,1),
-            Publisher= "Neoclassic, АСТ",
-            NumberOfPages=240};
+                Title = "Пикник на обочине",
+                Authors = strugatskie,
+                YearOfPublication = new DateTime(2017, 1, 1),
+                Publisher = "Neoclassic, АСТ",
+                NumberOfPages = 240
+            };
 
             if (Books == null)
             {
@@ -51,8 +59,7 @@ namespace LibraryApp.Controllers
                 Books.Add(warAndPeace);
                 Books.Add(piknik);
             }
-
-            return View(Books);
+            return View( Books);
         }
 
         [HttpGet]
@@ -62,18 +69,15 @@ namespace LibraryApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(BookModel model)
         {
             if (ModelState.IsValid)
             {
                 Books.Add(model);
-
-                return Json(new { success = true, message = "Submitted Successfully" });
+                return PartialView("Add", new BookModel() { Title=""}); // TODO: modef come not empty, but full of old data
             }
-            else
-            {
-                return Json(new { success = false });
-            }
+            return PartialView("Add",model);
 
         }
 

@@ -1,28 +1,22 @@
-﻿function jQueryAjaxPost(form) {
-    $.validator.unobtrusive.parse(form);
-    if ($(form).valid()) {
-        var ajaxConfig = {
-            type: 'POST',
-            url: form.action,
-            data: new FormData(form),
-            success: function (response) {
-                if (response.success) {
-                    //$("#addForm").html(response.html);
-                   // $.notify(response.message, "success");
-                   // if (typeof activatejQueryTable !== 'undefined' && $.isFunction(activatejQueryTable))
-                   //     activatejQueryTable();
+﻿
+    function replaceTable() {
+        alert(1);
+        
+            //Send the AJAX call to the server
+            $.ajax({
+                //The URL to process the request
+                'url': '/Home/BooksTable',
+                //The type of request, also known as the "method" in HTML forms
+                //Can be 'GET' or 'POST'
+                'type': 'GET',
+                //Any post-data/get-data parameters
+                //This is optional
+                
+                //The response from the server
+                'success': function (data) {
+                    //You can use any jQuery/JavaScript here!!!
+                    $('#books-table').html(data);
                 }
-                else {
-                    $.notify(response.message, "error");
-                }
-            }
-        }
-        if ($(form).attr('enctype') == "multipart/form-data") {
-            ajaxConfig["contentType"] = false;
-            ajaxConfig["processData"] = false;
-        }
-        $.ajax(ajaxConfig);
-
+            
+        });
     }
-    return false;
-}
