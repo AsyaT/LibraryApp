@@ -17,6 +17,7 @@
                 <th>Name of publisher</th>
                 <th>Year of publications</th>
                 <th>Image</th>
+                <th>Actions</th>
             </tr>
         </thead>
         @foreach (BookModel book in Model)
@@ -36,6 +37,7 @@
             <td>@book.Publisher</td>
             <td>@book.YearOfPublication.Year</td>
             <td>@book.Image</td>
+            <td>@Html.ActionLink("Delete","Delete", new { id = book.Id })</td>
         </tr>
         }
     </table>
