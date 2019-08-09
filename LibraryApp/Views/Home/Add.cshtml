@@ -21,6 +21,12 @@
         </div>
         <div class="editor-field">
             @Html.LabelFor(model => model.Authors)
+
+            <input type="text" name="Authors[0].FirstName" value="H.A." />
+            <input type="text" name="Authors[0].LastName" value="Rey" />
+
+            <input type="text" name="Authors[1].FirstName" value="Alex" />
+            <input type="text" name="Authors[1].LastName" value="Exc" />
         </div>
             <div class="editor-field">
                 @Html.LabelFor(model => model.NumberOfPages)
