@@ -1,17 +1,20 @@
 ﻿@using LibraryApp.Models;
+@model List<AuthorModel>
 
 @{ 
     int orderNumber = (int)ViewData["orderNumber"];
-    string uniqueControlId = (string)ViewData["uniqueControlId"]; 
+    string uniqueControlId = (string)ViewData["uniqueControlId"];
 }
 
 <div class="form-group">
-    <label>First name</label>
-    @Html.Editor("Authors[" + orderNumber + "].FirstName")
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        @Html.LabelFor(m=> "Authors"+m[i].FirstName)
+        @Html.EditorFor(m => "Authors" + m[i].FirstName)
 
-    <label>Last name</label>
-    @Html.Editor("Authors[" + orderNumber + "].LastName")
-
+        @Html.LabelFor(m => "Authors" + m[i].LastName)
+        @Html.EditorFor(m => "Authors" + m[i].LastName)
+    }
     <div id="authors-set-@uniqueControlId">
         @Ajax.ActionLink("Add extra author", "AddAuthor", new { number = orderNumber + 1 }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-"+ uniqueControlId })
     </div>

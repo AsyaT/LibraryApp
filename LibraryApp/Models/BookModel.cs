@@ -8,6 +8,11 @@ namespace LibraryApp.Models
 {
     public class BookModel
     {
+        public BookModel()
+        {
+            Authors = new List<AuthorModel>();
+        }
+
         public Guid Id { get; set; }
 
         [Required]

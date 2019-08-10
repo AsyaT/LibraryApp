@@ -63,7 +63,9 @@ namespace LibraryApp.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            return View();
+            var model = new BookModel();
+            model.Authors.Add(new AuthorModel() { FirstName = "", LastName = "" });
+            return View(model);
         }
 
         [HttpPost]
@@ -81,13 +83,6 @@ namespace LibraryApp.Controllers
             }
             return PartialView("Add",model);
 
-        }
-
-        public ActionResult AddAuthor (int number, string id)
-        {
-            ViewData["orderNumber"] = number;
-            ViewData["uniqueControlId"] = id;
-            return PartialView();
         }
 
         [HttpGet]

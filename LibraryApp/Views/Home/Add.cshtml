@@ -6,7 +6,7 @@
 }
 @{HtmlHelper.UnobtrusiveJavaScriptEnabled = true;}
 <div id="addForm">
-@using (Ajax.BeginForm("Add", "Home",  new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "addForm", InsertionMode = InsertionMode.Replace, OnComplete = "replaceTable()" }, new { enctype = "multipart/form-data" }))
+@using (Ajax.BeginForm("Add", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "addForm", InsertionMode = InsertionMode.Replace, OnComplete = "replaceTable()" }, new { enctype = "multipart/form-data" }))
 {
 
     @Html.AntiForgeryToken()
@@ -23,8 +23,20 @@
             @Html.LabelFor(model => model.Authors)
 
             <br />
-                        
-            @Html.Action("AddAuthor","Home", new { number = 0, id = 0 })
+            @{ 
+                ViewData["orderNumber"] = 0;
+                ViewData["uniqueControlId"] = "0";
+            }
+            @for (int i = 0; i < Model.Authors.Count(); i++)
+            {
+                @Html.LabelFor(m => m.Authors[i].FirstName)
+                @Html.EditorFor(m => m.Authors[i].FirstName)
+                @Html.ValidationMessageFor(m => m.Authors[i].FirstName, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(m => m.Authors[i].LastName)
+                @Html.EditorFor(m => m.Authors[i].LastName)
+                @Html.ValidationMessageFor(m => m.Authors[i].LastName, "", new { @class = "text-danger" })
+            }
             @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })
 
         </div>
