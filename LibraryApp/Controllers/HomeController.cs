@@ -93,9 +93,14 @@ namespace LibraryApp.Controllers
 
         }
 
-        public ActionResult AddAuthor (int number)
+        public ActionResult AddAuthor (int number, string id)
         {
-            return PartialView(number);
+            AuthorCreationModel model = new AuthorCreationModel()
+            {
+                OrderNumber = number,
+                UniqueControlId = id
+            };
+            return PartialView(model);
         }
 
         [HttpGet]
