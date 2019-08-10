@@ -7,7 +7,7 @@ namespace LibraryApp.Models
 {
     public class BookModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(30, ErrorMessage = "Title cannot be longer than 30 characters.")]

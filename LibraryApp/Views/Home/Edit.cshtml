@@ -13,6 +13,7 @@
             @Html.ValidationSummary(true)
 
             <fieldset>
+                @Html.HiddenFor(model => model.Id)
                 <div class="editor-field">
                     @Html.LabelFor(model => model.Title)
                     @Html.EditorFor(model => model.Title)

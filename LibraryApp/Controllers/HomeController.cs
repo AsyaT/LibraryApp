@@ -30,7 +30,7 @@ namespace LibraryApp.Controllers
 
             BookModel warAndPeace = new BookModel()
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Title = "Война и мир",
                 Authors = tolstoy,
                 YearOfPublication = new DateTime(2014, 1, 1),
@@ -44,7 +44,7 @@ namespace LibraryApp.Controllers
 
             BookModel piknik = new BookModel()
             {
-                Id = 2,
+                Id = Guid.NewGuid(),
                 Title = "Пикник на обочине",
                 Authors = strugatskie,
                 YearOfPublication = new DateTime(2017, 1, 1),
@@ -74,6 +74,7 @@ namespace LibraryApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.Id = Guid.NewGuid();
                 Books.Add(model);
                 return PartialView("Add", new BookModel() { Title=""});
             }
@@ -87,7 +88,7 @@ namespace LibraryApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             BookModel itemToEdit = Books.Find(x => x.Id == id);
             return PartialView("Edit", itemToEdit);
@@ -111,7 +112,7 @@ namespace LibraryApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             Books.Remove(Books.Find(x => x.Id == id));
             return PartialView("BooksTable",Books);
