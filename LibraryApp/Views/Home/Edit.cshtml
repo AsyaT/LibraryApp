@@ -23,8 +23,16 @@
                     @Html.LabelFor(model => model.Authors)
 
                     <br />
+                    @for (int i = 0; i < Model.Authors.Count(); i++)
+                    {
+                        <label>First name</label>
+                        <input id="Authors_@(i)__FirstName" name="Authors[@(i)].FirstName" type="text" value="@Model.Authors[i].FirstName">
 
-                    @Html.Action("AddAuthor", "Home", new { number = 0, id = Model.Id })
+                        <label>Last name</label>
+                        <input id="Authors_@(i)__LastName" name="Authors[@(i)].LastName" type="text" value="@Model.Authors[i].LastName">
+                    }
+
+                    @Html.Action("AddAuthor", "Home", new { number = Model.Authors.Count(), id = Model.Id })
 
 
                 </div>

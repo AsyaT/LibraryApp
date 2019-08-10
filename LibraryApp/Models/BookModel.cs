@@ -14,8 +14,9 @@ namespace LibraryApp.Models
         [StringLength(30, ErrorMessage = "Title cannot be longer than 30 characters.")]
         public string Title { get; set; }
 
-        //TODO: custom attribure that at least one author exists
-        public IEnumerable<AuthorModel> Authors { get; set; }
+        [NotEmptyCollection]
+        [FirstElementNotEmpty]
+        public IList<AuthorModel> Authors { get; set; }
 
         [Required]
         [Range(1, 10000)]

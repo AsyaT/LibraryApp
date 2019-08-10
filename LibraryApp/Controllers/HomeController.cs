@@ -78,15 +78,17 @@ namespace LibraryApp.Controllers
                 model.Id = Guid.NewGuid();
                 Books.Add(model);
 
-                if (Directory.Exists(Server.MapPath("~/img/")) == false)
+                if (model.Image != null)
                 {
-                    Directory.CreateDirectory(Server.MapPath("~/img/"));
+                    if (Directory.Exists(Server.MapPath("~/img/")) == false)
+                    {
+                        Directory.CreateDirectory(Server.MapPath("~/img/"));
+                    }
+
+                    string relativePath = "~/img/" + Path.GetFileName(model.Image.FileName);
+                    string physicalPath = Server.MapPath(relativePath);
+                    model.Image.SaveAs(physicalPath);
                 }
-
-                string relativePath = "~/img/" + Path.GetFileName(model.Image.FileName);
-                string physicalPath = Server.MapPath(relativePath);
-                model.Image.SaveAs(physicalPath);
-
                 return PartialView("Add", new BookModel() { Title=""});
             }
             return PartialView("Add",model);
@@ -120,14 +122,17 @@ namespace LibraryApp.Controllers
                 Books.Remove(itemToEdit);
                 Books.Add(model);
 
-                if (Directory.Exists(Server.MapPath("~/img/")) == false)
+                if (model.Image != null)
                 {
-                    Directory.CreateDirectory(Server.MapPath("~/img/"));
-                }
+                    if (Directory.Exists(Server.MapPath("~/img/")) == false)
+                    {
+                        Directory.CreateDirectory(Server.MapPath("~/img/"));
+                    }
 
-                string relativePath = "~/img/" + Path.GetFileName(model.Image.FileName);
-                string physicalPath = Server.MapPath(relativePath);
-                model.Image.SaveAs(physicalPath);
+                    string relativePath = "~/img/" + Path.GetFileName(model.Image.FileName);
+                    string physicalPath = Server.MapPath(relativePath);
+                    model.Image.SaveAs(physicalPath);
+                }
 
                 return PartialView("TableRow", model);
             }
