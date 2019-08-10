@@ -35,12 +35,12 @@
             }
 
             @{ 
-                ViewData["orderNumber"] = 0;
-                ViewData["uniqueControlId"] = "0";
+                int orderNumber = 1;
+                string uniqueControlId = "new";
             }
 
-            <div id="authors-set-new">
-                @Ajax.ActionLink("Add extra author", "AddAuthor", new { quantity = 1, controlId = "authors-set-new" }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-new" })
+            <div id="authors-set-@uniqueControlId">
+                @Ajax.ActionLink("Add extra author", "AddAuthor", new { quantity = orderNumber, controlId = uniqueControlId }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-"+ uniqueControlId })
             </div>
             
             @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })

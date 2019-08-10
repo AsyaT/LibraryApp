@@ -34,7 +34,14 @@
                         @Html.ValidationMessageFor(m => m.Authors[i].LastName, "", new { @class = "text-danger" })
                     }
 
-                    @Html.Action("AddAuthor", "Home", new { quantity = Model.Authors.Count(), controlId = Model.Id })
+                    @{
+                        int orderNumber = Model.Authors.Count();
+                        string uniqueControlId = Model.Id.ToString();
+                    }
+
+                    <div id="authors-set-@uniqueControlId">
+                        @Ajax.ActionLink("Add extra author", "AddAuthor", new { quantity = orderNumber, controlId = uniqueControlId }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-" + uniqueControlId })
+                    </div>
 
 
                 </div>

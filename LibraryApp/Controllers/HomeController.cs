@@ -100,7 +100,7 @@ namespace LibraryApp.Controllers
         public ActionResult Edit(Guid id)
         {
             BookModel itemToEdit = Books.Find(x => x.Id == id);
-            itemToEdit.Authors.Add(new AuthorModel() { FirstName = "", LastName = "" });
+            //itemToEdit.Authors.Add(new AuthorModel() { FirstName = "", LastName = "" });
             return PartialView("Edit", itemToEdit);
         }
 
