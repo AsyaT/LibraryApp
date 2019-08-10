@@ -118,6 +118,14 @@ namespace LibraryApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                foreach (AuthorModel author in model.Authors.ToList())
+                {
+                    if (string.IsNullOrWhiteSpace(author.FirstName) && string.IsNullOrWhiteSpace(author.LastName))
+                    {
+                        model.Authors.Remove(author);
+                    }
+                }
+
                 BookModel itemToEdit = Books.Find(x => x.Id == model.Id);
                 Books.Remove(itemToEdit);
                 Books.Add(model);
