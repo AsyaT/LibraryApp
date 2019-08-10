@@ -23,10 +23,9 @@
             @Html.LabelFor(model => model.Authors)
 
             <br />
-
-            
+                        
             @Html.Action("AddAuthor","Home", new { number = 0, id = 0 })
-
+            @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })
 
         </div>
             <div class="editor-field">

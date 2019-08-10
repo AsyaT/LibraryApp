@@ -1,13 +1,18 @@
 ﻿@using LibraryApp.Models;
-@model AuthorCreationModel
+
+@{ 
+    int orderNumber = (int)ViewData["orderNumber"];
+    string uniqueControlId = (string)ViewData["uniqueControlId"]; 
+}
+
 <div class="form-group">
     <label>First name</label>
-    @Html.Editor("Authors[" + Model.OrderNumber + "].FirstName")
+    @Html.Editor("Authors[" + orderNumber + "].FirstName")
 
     <label>Last name</label>
-    @Html.Editor("Authors[" + Model.OrderNumber + "].LastName")
+    @Html.Editor("Authors[" + orderNumber + "].LastName")
 
-    <div id="authors-set-@Model.UniqueControlId">
-        @Ajax.ActionLink("Add extra author", "AddAuthor", new { number = Model.OrderNumber + 1 }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-"+Model.UniqueControlId })
+    <div id="authors-set-@uniqueControlId">
+        @Ajax.ActionLink("Add extra author", "AddAuthor", new { number = orderNumber + 1 }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-"+ uniqueControlId })
     </div>
 </div>

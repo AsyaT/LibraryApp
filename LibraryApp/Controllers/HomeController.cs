@@ -1,11 +1,8 @@
 ﻿using LibraryApp.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 
 namespace LibraryApp.Controllers
 {
@@ -78,17 +75,8 @@ namespace LibraryApp.Controllers
                 model.Id = Guid.NewGuid();
                 Books.Add(model);
 
-                if (model.Image != null)
-                {
-                    if (Directory.Exists(Server.MapPath("~/img/")) == false)
-                    {
-                        Directory.CreateDirectory(Server.MapPath("~/img/"));
-                    }
-
-                    string relativePath = "~/img/" + Path.GetFileName(model.Image.FileName);
-                    string physicalPath = Server.MapPath(relativePath);
-                    model.Image.SaveAs(physicalPath);
-                }
+                Utils.SaveFile(model.Image);
+                
                 return PartialView("Add", new BookModel() { Title=""});
             }
             return PartialView("Add",model);
@@ -97,12 +85,9 @@ namespace LibraryApp.Controllers
 
         public ActionResult AddAuthor (int number, string id)
         {
-            AuthorCreationModel model = new AuthorCreationModel()
-            {
-                OrderNumber = number,
-                UniqueControlId = id
-            };
-            return PartialView(model);
+            ViewData["orderNumber"] = number;
+            ViewData["uniqueControlId"] = id;
+            return PartialView();
         }
 
         [HttpGet]
@@ -130,17 +115,7 @@ namespace LibraryApp.Controllers
                 Books.Remove(itemToEdit);
                 Books.Add(model);
 
-                if (model.Image != null)
-                {
-                    if (Directory.Exists(Server.MapPath("~/img/")) == false)
-                    {
-                        Directory.CreateDirectory(Server.MapPath("~/img/"));
-                    }
-
-                    string relativePath = "~/img/" + Path.GetFileName(model.Image.FileName);
-                    string physicalPath = Server.MapPath(relativePath);
-                    model.Image.SaveAs(physicalPath);
-                }
+                Utils.SaveFile(model.Image);
 
                 return PartialView("TableRow", model);
             }
@@ -153,7 +128,10 @@ namespace LibraryApp.Controllers
         [HttpGet]
         public ActionResult Delete(Guid id)
         {
-            Books.Remove(Books.Find(x => x.Id == id));
+            if (Books != null && Books.Any())
+            {
+                Books.Remove(Books.Find(x => x.Id == id));
+            }
             return PartialView("BooksTable",Books);
         }
 
