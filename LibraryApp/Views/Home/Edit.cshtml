@@ -7,7 +7,7 @@
 @{HtmlHelper.UnobtrusiveJavaScriptEnabled = true;}
 <td>
     <div>
-        @using (Ajax.BeginForm("Edit", "Home", new { enctype = "multipart/form-data" }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "book-" + Model.Id }))
+        @using (Ajax.BeginForm("Edit", "Home", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "book-" + Model.Id }, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)

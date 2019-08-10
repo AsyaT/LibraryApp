@@ -114,6 +114,16 @@ namespace LibraryApp.Controllers
                 BookModel itemToEdit = Books.Find(x => x.Id == model.Id);
                 Books.Remove(itemToEdit);
                 Books.Add(model);
+
+                if (Directory.Exists(Server.MapPath("~/img/")) == false)
+                {
+                    Directory.CreateDirectory(Server.MapPath("~/img/"));
+                }
+
+                string relativePath = "~/img/" + Path.GetFileName(model.Image.FileName);
+                string physicalPath = Server.MapPath(relativePath);
+                model.Image.SaveAs(physicalPath);
+
                 return PartialView("TableRow", model);
             }
             else
