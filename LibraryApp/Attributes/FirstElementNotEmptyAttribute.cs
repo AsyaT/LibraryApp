@@ -16,7 +16,7 @@ namespace LibraryApp.Attributes
             {
                 AuthorModel firstElemnt = ((List<AuthorModel>)value).FirstOrDefault();
 
-                if (string.IsNullOrWhiteSpace(firstElemnt.FirstName) == false && string.IsNullOrWhiteSpace(firstElemnt.LastName) == false && firstElemnt.FirstName.Length<=20 && firstElemnt.LastName.Length <= 20)
+                if (string.IsNullOrWhiteSpace(firstElemnt.FirstName) == false && string.IsNullOrWhiteSpace(firstElemnt.LastName) == false)
                 {
                     return ValidationResult.Success;
                 }

@@ -1,23 +1,19 @@
 ﻿@using LibraryApp.Models;
-@model BookModel
 
 @{ 
     int orderNumber = (int)ViewData["orderNumber"];
     string uniqueControlId = (string)ViewData["uniqueControlId"];
 }
 
-<div class="form-group">
-   @for (int i = 0; i < Model.Authors.Count(); i++)
-            {
-    @Html.LabelFor(m => m.Authors[i].FirstName)
-    @Html.EditorFor(m => m.Authors[i].FirstName)
-    @Html.ValidationMessageFor(m => m.Authors[i].FirstName, "", new { @class = "text-danger" })
 
-    @Html.LabelFor(m => m.Authors[i].LastName)
-    @Html.EditorFor(m => m.Authors[i].LastName)
-    @Html.ValidationMessageFor(m => m.Authors[i].LastName, "", new { @class = "text-danger" })
-   }
+   <label for="Authors_@(orderNumber)__FirstName">FirstName</label>
+<input class="text-box single-line" data-val="true" data-val-length="First name cannot be longer than 20 characters." data-val-length-max="20" id="Authors_@(orderNumber)__FirstName" name="Authors[@(orderNumber)].FirstName" type="text" value="">
+<span class="field-validation-valid text-danger" data-valmsg-for="Authors[@(orderNumber)].FirstName" data-valmsg-replace="true"></span>
+
+<label for="Authors_@(orderNumber)__LastName">LastName</label>
+<input class="text-box single-line" data-val="true" data-val-length="Last name cannot be longer than 20 characters." data-val-length-max="20" id="Authors_@(orderNumber)__LastName" name="Authors[@(orderNumber)].LastName" type="text" value="">
+<span class="field-validation-valid text-danger" data-valmsg-for="Authors[@(orderNumber)].LastName" data-valmsg-replace="true"></span>
+
     <div id="authors-set-@uniqueControlId">
-        @Ajax.ActionLink("Add extra author", "AddAuthor", new { number = orderNumber + 1, model = Model }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-"+ uniqueControlId })
+        @Ajax.ActionLink("Add extra author", "AddAuthor", new { quantity = orderNumber + 1, controlId = uniqueControlId }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-"+ uniqueControlId })
     </div>
-</div>

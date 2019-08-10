@@ -25,14 +25,16 @@
                     <br />
                     @for (int i = 0; i < Model.Authors.Count(); i++)
                     {
-                        <label>First name</label>
-                        <input id="Authors_@(i)__FirstName" name="Authors[@(i)].FirstName" type="text" value="@Model.Authors[i].FirstName">
+                        @Html.LabelFor(m => m.Authors[i].FirstName)
+                        @Html.EditorFor(m => m.Authors[i].FirstName)
+                        @Html.ValidationMessageFor(m => m.Authors[i].FirstName, "", new { @class = "text-danger" })
 
-                        <label>Last name</label>
-                        <input id="Authors_@(i)__LastName" name="Authors[@(i)].LastName" type="text" value="@Model.Authors[i].LastName">
+                        @Html.LabelFor(m => m.Authors[i].LastName)
+                        @Html.EditorFor(m => m.Authors[i].LastName)
+                        @Html.ValidationMessageFor(m => m.Authors[i].LastName, "", new { @class = "text-danger" })
                     }
 
-                    @Html.Action("AddAuthor", "Home", new { number = Model.Authors.Count(), id = Model.Id })
+                    @Html.Action("AddAuthor", "Home", new { quantity = Model.Authors.Count(), controlId = Model.Id })
 
 
                 </div>

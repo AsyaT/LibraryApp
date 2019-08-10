@@ -88,18 +88,19 @@ namespace LibraryApp.Controllers
 
         }
 
-        public ActionResult AddAuthor(int number, BookModel model)
+        public ActionResult AddAuthor(int quantity, string controlId)
         {
-            ViewData["orderNumber"] = number;
-            ViewData["uniqueControlId"] = model.Id;
-            model.Authors.Add(new AuthorModel() { FirstName = "", LastName = "" });
-            return PartialView(model);
+            ViewData["orderNumber"] = quantity;
+            ViewData["uniqueControlId"] = controlId;
+
+            return PartialView();
         }
 
-    [HttpGet]
+        [HttpGet]
         public ActionResult Edit(Guid id)
         {
             BookModel itemToEdit = Books.Find(x => x.Id == id);
+            itemToEdit.Authors.Add(new AuthorModel() { FirstName = "", LastName = "" });
             return PartialView("Edit", itemToEdit);
         }
 
