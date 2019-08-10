@@ -1,6 +1,7 @@
 ﻿using LibraryApp.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -76,6 +77,16 @@ namespace LibraryApp.Controllers
             {
                 model.Id = Guid.NewGuid();
                 Books.Add(model);
+
+                if (Directory.Exists(Server.MapPath("~/img/")) == false)
+                {
+                    Directory.CreateDirectory(Server.MapPath("~/img/"));
+                }
+
+                string relativePath = "~/img/" + Path.GetFileName(model.Image.FileName);
+                string physicalPath = Server.MapPath(relativePath);
+                model.Image.SaveAs(physicalPath);
+
                 return PartialView("Add", new BookModel() { Title=""});
             }
             return PartialView("Add",model);

@@ -6,7 +6,7 @@
 }
 @{HtmlHelper.UnobtrusiveJavaScriptEnabled = true;}
 <div id="addForm">
-@using (Ajax.BeginForm("Add", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "addForm", InsertionMode = InsertionMode.Replace, OnComplete = "replaceTable()" }))
+@using (Ajax.BeginForm("Add", "Home",  new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "addForm", InsertionMode = InsertionMode.Replace, OnComplete = "replaceTable()" }, new { enctype = "multipart/form-data" }))
 {
 
     @Html.AntiForgeryToken()
@@ -46,8 +46,7 @@
             </div>
             <div class="editor-field">
                 @Html.LabelFor(model => model.Image)
-                @Html.EditorFor(model => model.Image)
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                <input type="file" name="Image" class="input-files" />
             </div>
             <input type="submit" value="Save" id="buttonSave" />
 </fieldset>

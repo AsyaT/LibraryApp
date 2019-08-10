@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace LibraryApp.Models
 {
@@ -27,6 +28,7 @@ namespace LibraryApp.Models
         [YearMinimumRange(1800)]
         public int YearOfPublication { get; set; }
 
-        public string Image { get; set; } // TODO: save image
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase Image { get; set; } 
     }
 }
