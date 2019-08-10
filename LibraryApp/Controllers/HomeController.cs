@@ -78,14 +78,25 @@ namespace LibraryApp.Controllers
                 Books.Add(model);
 
                 Utils.SaveFile(model.Image);
-                
-                return PartialView("Add", new BookModel() { Title=""});
+
+                var newModel = new BookModel();
+                newModel.Authors.Add(new AuthorModel() { FirstName = "", LastName = "" });
+
+                return PartialView("Add", newModel);
             }
             return PartialView("Add",model);
 
         }
 
-        [HttpGet]
+        public ActionResult AddAuthor(int number, BookModel model)
+        {
+            ViewData["orderNumber"] = number;
+            ViewData["uniqueControlId"] = model.Id;
+            model.Authors.Add(new AuthorModel() { FirstName = "", LastName = "" });
+            return PartialView(model);
+        }
+
+    [HttpGet]
         public ActionResult Edit(Guid id)
         {
             BookModel itemToEdit = Books.Find(x => x.Id == id);

@@ -1,5 +1,5 @@
 ﻿@using LibraryApp.Models;
-@model List<AuthorModel>
+@model BookModel
 
 @{ 
     int orderNumber = (int)ViewData["orderNumber"];
@@ -7,15 +7,17 @@
 }
 
 <div class="form-group">
-    @for (int i = 0; i < Model.Count(); i++)
-    {
-        @Html.LabelFor(m=> "Authors"+m[i].FirstName)
-        @Html.EditorFor(m => "Authors" + m[i].FirstName)
+   @for (int i = 0; i < Model.Authors.Count(); i++)
+            {
+    @Html.LabelFor(m => m.Authors[i].FirstName)
+    @Html.EditorFor(m => m.Authors[i].FirstName)
+    @Html.ValidationMessageFor(m => m.Authors[i].FirstName, "", new { @class = "text-danger" })
 
-        @Html.LabelFor(m => "Authors" + m[i].LastName)
-        @Html.EditorFor(m => "Authors" + m[i].LastName)
-    }
+    @Html.LabelFor(m => m.Authors[i].LastName)
+    @Html.EditorFor(m => m.Authors[i].LastName)
+    @Html.ValidationMessageFor(m => m.Authors[i].LastName, "", new { @class = "text-danger" })
+   }
     <div id="authors-set-@uniqueControlId">
-        @Ajax.ActionLink("Add extra author", "AddAuthor", new { number = orderNumber + 1 }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-"+ uniqueControlId })
+        @Ajax.ActionLink("Add extra author", "AddAuthor", new { number = orderNumber + 1, model = Model }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-"+ uniqueControlId })
     </div>
 </div>
