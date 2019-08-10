@@ -20,7 +20,7 @@ namespace LibraryApp.Models
         public string Title { get; set; }
 
         [NotEmptyCollection]
-        [FirstElementNotEmpty]
+        [NameisValid]
         public IList<AuthorModel> Authors { get; set; }
 
         [Required]

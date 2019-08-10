@@ -42,7 +42,7 @@
                     <div id="authors-set-@uniqueControlId">
                         @Ajax.ActionLink("Add extra author", "AddAuthor", new { quantity = orderNumber, controlId = uniqueControlId }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-" + uniqueControlId })
                     </div>
-
+                    @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })
 
                 </div>
                 <div class="editor-field">
