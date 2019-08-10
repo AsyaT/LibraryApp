@@ -24,13 +24,13 @@ namespace LibraryApp.Attributes
                 return new ValidationResult("Data is empty.");
             }
 
-            if (this.Minimum <= ((DateTime)value).Year && this.Maximum >= ((DateTime)value).Year)
+            if (this.Minimum <= (int)value && this.Maximum >= (int)value)
             {
                 return ValidationResult.Success;
             }
             else
             {
-                return new ValidationResult("Date of publication must be newer than 1800 year.");
+                return new ValidationResult("Date of publication must be after 1800 year and before "+DateTime.Now.Year+".");
             }
         }
     }

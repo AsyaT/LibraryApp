@@ -23,11 +23,9 @@ namespace LibraryApp.Models
         [StringLength(30, ErrorMessage = "Publisher name cannot be longer than 20 characters.")]
         public string Publisher { get; set; }
 
-        [DataType(DataType.Date)]
         [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
         [YearMinimumRange(1800)]
-        public DateTime YearOfPublication { get; set; }
+        public int YearOfPublication { get; set; }
 
         public string Image { get; set; } // TODO: save image
     }

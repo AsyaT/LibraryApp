@@ -14,7 +14,7 @@
     </td>
     <td>@Model.NumberOfPages</td>
     <td>@Model.Publisher</td>
-    <td>@Model.YearOfPublication.Year</td>
+    <td>@Model.YearOfPublication</td>
     <td>@Model.Image</td>
     <td>
         @Ajax.ActionLink("Edit", "Edit", "Home", new { id = Model.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "book-" + Model.Id })

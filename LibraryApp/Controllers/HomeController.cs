@@ -33,7 +33,7 @@ namespace LibraryApp.Controllers
                 Id = Guid.NewGuid(),
                 Title = "Война и мир",
                 Authors = tolstoy,
-                YearOfPublication = new DateTime(2014, 1, 1),
+                YearOfPublication = 2014,
                 Publisher = "Азбука , Азбука-Аттикус",
                 NumberOfPages = 660
             };
@@ -47,7 +47,7 @@ namespace LibraryApp.Controllers
                 Id = Guid.NewGuid(),
                 Title = "Пикник на обочине",
                 Authors = strugatskie,
-                YearOfPublication = new DateTime(2017, 1, 1),
+                YearOfPublication = 2017,
                 Publisher = "Neoclassic, АСТ",
                 NumberOfPages = 240
             };
