@@ -4,6 +4,13 @@
     string uniqueControlId = (string)ViewData["uniqueControlId"];
 }
 
+<script>
+    $("a.btn-remove-author-details").click(function (event) {
+        event.preventDefault();
+        $(this).parents('.author-details').remove();
+    });
+</script>
+
 <div class="author-details">
     <label for="Authors_@(orderNumber)__FirstName">FirstName</label>
     <input class="form-control text-box single-line" data-val="true" data-val-length="First name cannot be longer than 20 characters." data-val-length-max="20" id="Authors_@(orderNumber)__FirstName" name="Authors[@(orderNumber)].FirstName" type="text" value="">
