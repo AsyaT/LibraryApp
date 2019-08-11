@@ -10,21 +10,14 @@ namespace LibraryApp.Controllers
     {
         public List<BookModel> Books
         {
-            get
-            {
-                string sortParameter = (string)Session["SortingParameter"];
-                var result = (List<BookModel>)Session["Books"];
-
-                if (string.IsNullOrWhiteSpace(sortParameter))
-                {
-                    return result;
-                }
-                else
-                {
-                    return result.SortCollection(sortParameter);
-                }
-            }
+            get { return (List<BookModel>)Session["Books"]; }
             set { Session["Books"] = value; }
+        }
+
+        public string SortingParameter
+        {
+            get { return (string)Session["SortingParameter"]; }
+            set { Session["SortingParameter"] = value; }
         }
 
         [HttpGet]
@@ -66,11 +59,10 @@ namespace LibraryApp.Controllers
             if (Books == null)
             {
                 Books = new List<BookModel>();
-
                 Books.Add(warAndPeace);
                 Books.Add(piknik);
             }
-            return View( Books);
+            return View( Books.SortCollection(SortingParameter));
         }
 
         [HttpGet]
@@ -161,15 +153,15 @@ namespace LibraryApp.Controllers
             {
                 Books.Remove(Books.Find(x => x.Id == id));
             }
-            return PartialView("BooksTable",Books);
+            return PartialView("BooksTable",Books.SortCollection(this.SortingParameter));
         }
 
         [HttpPost]
         public ActionResult Sorting(string Sorting)
         {
-            Session["SortingParameter"] = Sorting;
+            SortingParameter = Sorting;
 
-            return PartialView("BooksTable", Books);
+            return PartialView("BooksTable", Books.SortCollection(this.SortingParameter));
         }
 
    }
