@@ -4,15 +4,17 @@
     string uniqueControlId = (string)ViewData["uniqueControlId"];
 }
 
+<div class="author-details">
+    <label for="Authors_@(orderNumber)__FirstName">FirstName</label>
+    <input class="form-control text-box single-line" data-val="true" data-val-length="First name cannot be longer than 20 characters." data-val-length-max="20" id="Authors_@(orderNumber)__FirstName" name="Authors[@(orderNumber)].FirstName" type="text" value="">
+    <span class="field-validation-valid text-danger" data-valmsg-for="Authors[@(orderNumber)].FirstName" data-valmsg-replace="true"></span>
 
-   <label for="Authors_@(orderNumber)__FirstName">FirstName</label>
-<input class="form-control text-box single-line" data-val="true" data-val-length="First name cannot be longer than 20 characters." data-val-length-max="20" id="Authors_@(orderNumber)__FirstName" name="Authors[@(orderNumber)].FirstName" type="text" value="">
-<span class="field-validation-valid text-danger" data-valmsg-for="Authors[@(orderNumber)].FirstName" data-valmsg-replace="true"></span>
+    <label for="Authors_@(orderNumber)__LastName">LastName</label>
+    <input class="form-control text-box single-line" data-val="true" data-val-length="Last name cannot be longer than 20 characters." data-val-length-max="20" id="Authors_@(orderNumber)__LastName" name="Authors[@(orderNumber)].LastName" type="text" value="">
+    <span class="field-validation-valid text-danger" data-valmsg-for="Authors[@(orderNumber)].LastName" data-valmsg-replace="true"></span>
 
-<label for="Authors_@(orderNumber)__LastName">LastName</label>
-<input class="form-control text-box single-line" data-val="true" data-val-length="Last name cannot be longer than 20 characters." data-val-length-max="20" id="Authors_@(orderNumber)__LastName" name="Authors[@(orderNumber)].LastName" type="text" value="">
-<span class="field-validation-valid text-danger" data-valmsg-for="Authors[@(orderNumber)].LastName" data-valmsg-replace="true"></span>
-
+    <a  href="#"  class="btn-remove-author-details">Remove this author</a>
+</div>
     <div id="authors-set-@uniqueControlId">
         @Ajax.ActionLink("Add extra author", "AddAuthor", new { quantity = orderNumber + 1, controlId = uniqueControlId }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-"+ uniqueControlId })
     </div>
