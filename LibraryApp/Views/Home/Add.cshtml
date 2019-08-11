@@ -5,6 +5,7 @@
     Layout = null;
 }
 @{HtmlHelper.UnobtrusiveJavaScriptEnabled = true;}
+
 <div id="addForm">
 @using (Ajax.BeginForm("Add", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "addForm", InsertionMode = InsertionMode.ReplaceWith, OnComplete = "replaceTable()" }, new { enctype = "multipart/form-data" }))
 {
@@ -39,38 +40,39 @@
                 </div>
              }
 
-                    @{
-                        int orderNumber = 1;
-                        string uniqueControlId = "new";
-                    }
+            @{
+                int orderNumber = 1;
+                string uniqueControlId = "new";
+            }
 
-                    <div id="authors-set-@uniqueControlId">
-                        @Ajax.ActionLink("Add extra author", "AddAuthor", new { quantity = orderNumber, controlId = uniqueControlId }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-" + uniqueControlId })
-                    </div>
+            <div id="authors-set-@uniqueControlId">
+                @Ajax.ActionLink("Add extra author", "AddAuthor", new { quantity = orderNumber, controlId = uniqueControlId }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "authors-set-" + uniqueControlId })
+            </div>
 
-                    @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })
 
-                </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.NumberOfPages)
-                @Html.EditorFor(model => model.NumberOfPages, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NumberOfPages, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Publisher)
-                @Html.EditorFor(model => model.Publisher, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.YearOfPublication)
-                @Html.EditorFor(model => model.YearOfPublication, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.YearOfPublication, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Image)
-                <input type="file" name="Image" class="input-files" />
-            </div>
-            <input type="submit" value="Save" class="btn btn-default"/>
-</fieldset>
-}
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumberOfPages)
+            @Html.EditorFor(model => model.NumberOfPages, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NumberOfPages, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Publisher)
+            @Html.EditorFor(model => model.Publisher, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.YearOfPublication)
+            @Html.EditorFor(model => model.YearOfPublication, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.YearOfPublication, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image)
+            <input type="file" name="Image" class="input-files" />
+        </div>
+        <input type="submit" value="Save" class="btn btn-default"/>
+    </fieldset>
+    }
 </div>

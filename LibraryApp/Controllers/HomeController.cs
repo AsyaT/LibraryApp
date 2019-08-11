@@ -28,39 +28,9 @@ namespace LibraryApp.Controllers
 
         public ActionResult BooksTable()
         {
-            List<AuthorModel> tolstoy = new List<AuthorModel>();
-            tolstoy.Add(new AuthorModel() { FirstName = "Лев", LastName = "Толстой" });
-
-
-            BookModel warAndPeace = new BookModel()
-            {
-                Id = Guid.NewGuid(),
-                Title = "Война и мир",
-                Authors = tolstoy,
-                YearOfPublication = 2014,
-                Publisher = "Азбука , Азбука-Аттикус",
-                NumberOfPages = 660
-            };
-
-            List<AuthorModel> strugatskie = new List<AuthorModel>();
-            strugatskie.Add(new AuthorModel() { FirstName = "Аркадий", LastName = "Стругацкий" });
-            strugatskie.Add(new AuthorModel() { FirstName = "Борис", LastName = "Стругацкий" });
-
-            BookModel piknik = new BookModel()
-            {
-                Id = Guid.NewGuid(),
-                Title = "Пикник на обочине",
-                Authors = strugatskie,
-                YearOfPublication = 2017,
-                Publisher = "Neoclassic, АСТ",
-                NumberOfPages = 240
-            };
-
             if (Books == null)
             {
-                Books = new List<BookModel>();
-                Books.Add(warAndPeace);
-                Books.Add(piknik);
+                Books = Utils.Hardcode();
             }
             return View( Books.SortCollection(SortingParameter));
         }
@@ -91,8 +61,10 @@ namespace LibraryApp.Controllers
 
                 return PartialView("Add", newModel);
             }
-            return PartialView("Add",model);
-
+            else
+            {
+                return PartialView("Add", model);
+            }
         }
 
         public ActionResult AddAuthor(int quantity, string controlId)

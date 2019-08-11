@@ -13,12 +13,14 @@ namespace LibraryApp.Attributes
         {
             if (((List<AuthorModel>)value) == null)
             {
-                return new ValidationResult("Collection is empty. Please add at least one author.");
+                return new ValidationResult("Collection is not initialized.");
             }
+
             if( ((List<AuthorModel>)value).Count == 0)
             {
                 return new ValidationResult("Collection is empty. Please add at least one author.");
             }
+
             if (((List<AuthorModel>)value).Any(x => string.IsNullOrWhiteSpace(x.FirstName) == false && string.IsNullOrWhiteSpace(x.LastName) == false))
             {
                 return ValidationResult.Success;

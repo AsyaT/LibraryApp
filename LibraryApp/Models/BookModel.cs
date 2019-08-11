@@ -21,7 +21,7 @@ namespace LibraryApp.Models
         public string Title { get; set; }
 
         [NotEmptyCollection]
-        [NameisValid]
+        [NameIsValid]
         [Display(Name = "Authors")]
         public IList<AuthorModel> Authors { get; set; }
 

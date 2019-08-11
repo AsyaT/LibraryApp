@@ -6,7 +6,7 @@
 }
 @{HtmlHelper.UnobtrusiveJavaScriptEnabled = true;}
 <tr id="book-@Model.Id">
-    <td>
+    <td colspan="7">
         <div>
             @using (Ajax.BeginForm("Edit", "Home", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "book-" + Model.Id }, new { enctype = "multipart/form-data" }))
             {
@@ -80,10 +80,4 @@
                             }
         </div>
     </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
 </tr>

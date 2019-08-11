@@ -7,7 +7,7 @@ using System.Web;
 
 namespace LibraryApp.Attributes
 {
-    public class NameisValidAttribute : ValidationAttribute
+    public class NameIsValidAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
