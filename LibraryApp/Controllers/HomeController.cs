@@ -82,6 +82,8 @@ namespace LibraryApp.Controllers
                 var newModel = new BookModel();
                 newModel.Authors.Add(new AuthorModel() { FirstName = "", LastName = "" });
 
+                ModelState.Clear();
+
                 return PartialView("Add", newModel);
             }
             return PartialView("Add",model);

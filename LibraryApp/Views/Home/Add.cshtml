@@ -6,7 +6,7 @@
 }
 @{HtmlHelper.UnobtrusiveJavaScriptEnabled = true;}
 <div id="addForm">
-@using (Ajax.BeginForm("Add", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "addForm", InsertionMode = InsertionMode.Replace, OnComplete = "replaceTable()" }, new { enctype = "multipart/form-data" }))
+@using (Ajax.BeginForm("Add", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "addForm", InsertionMode = InsertionMode.ReplaceWith, OnComplete = "replaceTable()" }, new { enctype = "multipart/form-data" }))
 {
 
     @Html.AntiForgeryToken()
