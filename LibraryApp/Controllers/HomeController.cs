@@ -12,14 +12,16 @@ namespace LibraryApp.Controllers
         {
             get
             {
-                if (string.IsNullOrWhiteSpace((string)Session["SortingParameter"]))
+                string sortParameter = (string)Session["SortingParameter"];
+                var result = (List<BookModel>)Session["Books"];
+
+                if (string.IsNullOrWhiteSpace(sortParameter))
                 {
-                    return (List<BookModel>)Session["Books"];
+                    return result;
                 }
                 else
                 {
-                    var result = (List<BookModel>)Session["Books"];
-                    return result.SortCollection((string)Session["SortingParameter"]);
+                    return result.SortCollection(sortParameter);
                 }
             }
             set { Session["Books"] = value; }
