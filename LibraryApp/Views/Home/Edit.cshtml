@@ -64,6 +64,12 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Image)
                         <input type="file" name="Image" class="input-files" />
+                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+
+                        @if (Model.Image != null)
+                        {
+                            <label>Current image:</label><img src="@Url.Content("~/img/" + Model.Image.FileName)" alt="" height="100" />
+                        }
                     </div>
                 </fieldset>
                 <input type="submit" value="Update" class="btn btn-default" />

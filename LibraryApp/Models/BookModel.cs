@@ -40,6 +40,7 @@ namespace LibraryApp.Models
         public int YearOfPublication { get; set; }
 
         [DataType(DataType.Upload)]
+        //[FileExtensions(Extensions = "jpg,jpeg,png,bmp,gif", ErrorMessage = "Please upload valid image of valid format: jpg, jpeg, png, bmp, gif.")]
         [Display(Name = "Image")]
         public HttpPostedFileBase Image { get; set; } 
     }

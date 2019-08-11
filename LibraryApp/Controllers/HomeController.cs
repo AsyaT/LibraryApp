@@ -118,10 +118,18 @@ namespace LibraryApp.Controllers
                 }
 
                 BookModel itemToEdit = Books.Find(x => x.Id == model.Id);
-                Books.Remove(itemToEdit);
-                Books.Add(model);
 
-                Utils.SaveFile(model.Image);
+                if(model.Image == null)
+                {
+                    model.Image = itemToEdit.Image;
+                }
+                else
+                {
+                    Utils.SaveFile(model.Image);
+                }
+
+                Books.Remove(itemToEdit);
+                Books.Add(model);             
 
                 return PartialView("TableRow", model);
             }
