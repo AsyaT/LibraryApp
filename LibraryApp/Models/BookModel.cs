@@ -30,7 +30,7 @@ namespace LibraryApp.Models
         [Display(Name = "Number of pages")]
         public uint NumberOfPages { get; set; }
 
-        [StringLength(30, ErrorMessage = "Publisher name cannot be longer than 20 characters.")]
+        [StringLength(30, ErrorMessage = "Publisher name cannot be longer than 30 characters.")]
         [Display(Name = "Name of publisher")]
         public string Publisher { get; set; }
 
