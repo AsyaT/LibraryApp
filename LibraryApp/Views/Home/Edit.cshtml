@@ -26,14 +26,19 @@
                         <br />
                         @for (int i = 0; i < Model.Authors.Count(); i++)
                         {
-                            @Html.LabelFor(m => m.Authors[i].FirstName)
-                            @Html.EditorFor(m => m.Authors[i].FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(m => m.Authors[i].FirstName, "", new { @class = "text-danger" })
-
-                            @Html.LabelFor(m => m.Authors[i].LastName)
-                            @Html.EditorFor(m => m.Authors[i].LastName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(m => m.Authors[i].LastName, "", new { @class = "text-danger" })
-                        }
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    @Html.LabelFor(m => m.Authors[i].FirstName)
+                                    @Html.EditorFor(m => m.Authors[i].FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(m => m.Authors[i].FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                <div class="form-group col-sm-4">
+                                    @Html.LabelFor(m => m.Authors[i].LastName)
+                                    @Html.EditorFor(m => m.Authors[i].LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(m => m.Authors[i].LastName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                          }
 
                         @{
                             int orderNumber = Model.Authors.Count();
@@ -69,7 +74,7 @@
                         {
                             <label>Current image:</label><img src="@Url.Content("~/img/" + Model.Image.FileName)" alt="" height="100" />
                         }
-                    </div>
+                     </div>
                 </fieldset>
                 <input type="submit" value="Update" class="btn btn-default" />
                             }
