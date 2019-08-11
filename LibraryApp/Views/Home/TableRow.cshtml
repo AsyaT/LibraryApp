@@ -20,7 +20,7 @@
                 <img src="@Url.Content("~/img/" + Model.Image.FileName)" alt="" height="100" />
             }
     <td>
-        @Ajax.ActionLink("Edit", "Edit", "Home", new { id = Model.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "book-" + Model.Id })
+        @Ajax.ActionLink("Edit", "Edit", "Home", new { id = Model.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.ReplaceWith, UpdateTargetId = "book-" + Model.Id })
         @Ajax.ActionLink("Delete", "Delete", "Home", new { id = Model.Id }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "books-table" })
     </td>
 </tr>
