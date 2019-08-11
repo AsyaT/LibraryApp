@@ -13,18 +13,18 @@
         <fieldset>
             <legend>Sort table:</legend>
             <label>
-                @Html.RadioButton("Sorting", "Title")
+                @Html.RadioButton("Sorting", "Title", ((string)Session["SortingParameter"] == "Title") ? true : false)
                 By title
             </label>
             <label>
-                @Html.RadioButton("Sorting", "Year")
-                By year
+                @Html.RadioButton("Sorting", "Year", ((string)Session["SortingParameter"] == "Year") ? true : false)
+                By year of publication
             </label>
             <input type="submit" vale="Sort" class="btn btn-default" />
         </fieldset>
      }
-
         <hr />
+
         <div id="books-table">
             @Html.Action("BooksTable")
         </div>

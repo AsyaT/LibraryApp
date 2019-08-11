@@ -10,7 +10,23 @@ namespace LibraryApp.Controllers
     {
         public List<BookModel> Books
         {
-            get { return (List<BookModel> )Session["Books"]; }
+            get
+            {
+                if (string.IsNullOrWhiteSpace((string)Session["SortingParameter"]))
+                {
+                    return (List<BookModel>)Session["Books"];
+                }else
+                {
+                    var result = (List<BookModel>)Session["Books"];
+                    switch ((string)Session["SortingParameter"])
+                    {
+                        case "Title": result = result.OrderBy(x => x.Title).ToList(); break;
+                        case "Year": result = result.OrderBy(x => x.YearOfPublication).ToList(); break;
+                        default: break;
+                    }
+                    return result;
+                }
+            }
             set { Session["Books"] = value; }
         }
 
@@ -156,9 +172,11 @@ namespace LibraryApp.Controllers
         {
             var result = Books;
 
+            Session["SortingParameter"] = Sorting;
+
             switch (Sorting)
             {
-                case "Title": result = Books.OrderBy(x=>x.Title).ToList();break;
+                case "Title":  result = Books.OrderBy(x=>x.Title).ToList();break;
                 case "Year": result = Books.OrderBy(x=>x.YearOfPublication).ToList(); break;
                 default: break;
             }
