@@ -15,16 +15,11 @@ namespace LibraryApp.Controllers
                 if (string.IsNullOrWhiteSpace((string)Session["SortingParameter"]))
                 {
                     return (List<BookModel>)Session["Books"];
-                }else
+                }
+                else
                 {
                     var result = (List<BookModel>)Session["Books"];
-                    switch ((string)Session["SortingParameter"])
-                    {
-                        case "Title": result = result.OrderBy(x => x.Title).ToList(); break;
-                        case "Year": result = result.OrderBy(x => x.YearOfPublication).ToList(); break;
-                        default: break;
-                    }
-                    return result;
+                    return result.SortCollection((string)Session["SortingParameter"]);
                 }
             }
             set { Session["Books"] = value; }
@@ -170,18 +165,9 @@ namespace LibraryApp.Controllers
         [HttpPost]
         public ActionResult Sorting(string Sorting)
         {
-            var result = Books;
-
             Session["SortingParameter"] = Sorting;
 
-            switch (Sorting)
-            {
-                case "Title":  result = Books.OrderBy(x=>x.Title).ToList();break;
-                case "Year": result = Books.OrderBy(x=>x.YearOfPublication).ToList(); break;
-                default: break;
-            }
-
-            return PartialView("BooksTable",result);
+            return PartialView("BooksTable", Books);
         }
 
    }

@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using LibraryApp.Models;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Web;
 
 namespace LibraryApp.Controllers
@@ -18,6 +21,17 @@ namespace LibraryApp.Controllers
                 string physicalPath = System.Web.HttpContext.Current.Server.MapPath(relativePath);
                 file.SaveAs(physicalPath);
             }
+        }
+
+        public static List<BookModel> SortCollection(this List<BookModel> collection, string parameter)
+        {
+            switch (parameter)
+            {
+                case "Title": collection = collection.OrderBy(x => x.Title).ToList(); break;
+                case "Year": collection = collection.OrderBy(x => x.YearOfPublication).ToList(); break;
+                default: break;
+            }
+            return collection;
         }
     }
 }
