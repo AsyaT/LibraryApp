@@ -8,7 +8,24 @@
 
     <hr />
 
-    <div id="books-table">
-        @Html.Action("BooksTable")
-    </div>
+    @using (Ajax.BeginForm("Sorting", "Home", new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "books-table" }))
+    {
+        <fieldset>
+            <legend>Sort table:</legend>
+            <label>
+                @Html.RadioButton("Sorting", "Title")
+                Title
+            </label>
+            <label>
+                @Html.RadioButton("Sorting", "Year")
+                Year
+            </label>
+            <input type="submit" vale="Sort" class="btn btn-default" />
+        </fieldset>
+     }
+
+        <hr />
+        <div id="books-table">
+            @Html.Action("BooksTable")
+        </div>
 </div>

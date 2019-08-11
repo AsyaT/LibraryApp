@@ -141,5 +141,20 @@ namespace LibraryApp.Controllers
             return PartialView("BooksTable",Books);
         }
 
+        [HttpPost]
+        public ActionResult Sorting(string Sorting)
+        {
+            var result = Books;
+
+            switch (Sorting)
+            {
+                case "Title": result = Books.OrderBy(x=>x.Title).ToList();break;
+                case "Year": result = Books.OrderBy(x=>x.YearOfPublication).ToList(); break;
+                default: break;
+            }
+
+            return PartialView("BooksTable",result);
+        }
+
    }
 }
